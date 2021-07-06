@@ -7,4 +7,5 @@ use App\Http\Controllers\SeriesController;
  //   return 'hell';
 //});
 
-Route::get('/serie   ', [SeriesController::class, 'index']);
+Route::get('/series   ', [SeriesController::class, 'index']);
+Route::get('/series/create   ', [SeriesController::class, 'create']);
