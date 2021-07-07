@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 
 
 use App\Http\Requests\SeriesFormRequest;
-use App\Serie;
+use App\Models\Serie;
 use Illuminate\Http\Request;
 
 class SeriesController extends Controller
