@@ -6,11 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 class CriarTabelaSeries extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('series', function (Blueprint $table) {
