@@ -26,7 +26,7 @@ class SeriesController extends Controller
     }
 
     public function store(SeriesFormRequest $request, CriadorDeSerie $criadorDeSerie)
-    {
+      {
             $serie = $criadorDeSerie->criarSerie($request->nome, $request->qtd_temporadas, $request->qtd_episodios);
 
             $request->session()->flash('mensagem', "Série {$serie->id}, temporadas e episódios criados com sucesso {$serie->nome}");
@@ -41,5 +41,13 @@ class SeriesController extends Controller
         $request->session()->flash('mensagem', "Série removida com sucesso");
 
         return redirect()->route('listar_series');
+    }
+
+    public function edit(int $id, Request $request)
+    {
+        $newName = $request->nome;
+        $serie = Serie::find($id);
+        $serie->nome = $newName;
+        $serie->save();
     }
 }
