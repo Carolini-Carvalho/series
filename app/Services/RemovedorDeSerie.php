@@ -14,29 +14,37 @@ class RemovedorDeSerie
     public function removerSerie(int $serieId): string
     {
         $nomeSerie = '';
-        DB::transaction( function () use ($serieId, $nomeSerie){
+        DB::transaction( function() use ($serieId, &$nomeSerie){
             $serie = Serie::find($serieId);
             $nomeSerie = $serie->nome;
 
-            $this->removerSerieETemporadas($serie);
+            $this->removerTemporadas($serie);
+            $serie->delete();
         });
 
         return $nomeSerie;
     }
 
-    public function removerSerieETemporadas($serie): void
+    /**
+     * @param Serie $serie
+     */
+
+    private function removerTemporadas(Serie $serie): void
     {
         $serie->temporadas->each(function (Temporada $temporada) {
-            $this->removerTemporada($temporada);
+            $this->removerEpisodios($temporada);
+            $temporada->delete();
         });
-        $serie->delete();
     }
 
-    public function removerTemporada(Temporada $temporada): void
+    /**
+     * @param Temporada $temporada
+     */
+
+    private function removerEpisodios(Temporada $temporada): void
     {
         $temporada->episodios()->each(function (Episodio $episodio) {
             $episodio->delete();
         });
-        $temporada->delete();
     }
 }

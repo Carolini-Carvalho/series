@@ -38,12 +38,12 @@ class SeriesController extends Controller
     {
         $nomeSerie = $removedorDeSerie->removerSerie($request->id);
 
-        $request->session()->flash('mensagem', "Série removida com sucesso");
+        $request->session()->flash('mensagem', "Série $nomeSerie removida com sucesso");
 
         return redirect()->route('listar_series');
     }
 
-    public function edit(int $id, Request $request)
+    public function update(int $id, Request $request)
     {
         $newName = $request->nome;
         $serie = Serie::find($id);
