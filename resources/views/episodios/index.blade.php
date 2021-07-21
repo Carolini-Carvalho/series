@@ -15,7 +15,6 @@
                         <input type="checkbox">
                     </label>
                 </li>
-
             @endforeach
         </ul>
         <button class="btn btn-primary mt-2 mb-2">Salvar</button>

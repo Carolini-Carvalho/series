@@ -37,6 +37,7 @@ Séries
         <a href="/series/{{ $serie->id }}/temporadas" class="btn btn-info btn-sm mr-1">
             <i class="fas fa-external-link-alt"></i>
         </a>
+
         <form method="post" action="/series/remover/{{ $serie->id }}"
               onsubmit="return confirm('Tem certeza que deseja remover {{ addslashes($serie->nome) }}?')">
             @csrf
@@ -66,22 +67,22 @@ Séries
     function editarSerie(serieId)
     {
         let formData = new FormData();
-        const nome = document
-            .querySelector(`#input-nome-serie-${serieId} > input`)
-            .value;
-        const token = document
-            .querySelector(`input[name="_token"]`)
-            .value;
+        const nome = document.querySelector(`#input-nome-serie-${serieId} > input`).value;
+        const token = document.querySelector(`input[name="_token"]`).value;
+       console.log(nome, token);
         formData.append('nome', nome);
         formData.append('_token', token);
+
         const url = `/series/{id}/update`;
+        console.log(url);
         fetch(url, {
-            method: 'POST',
-            body: formData
+            body: formData,
+            method: 'POST'
         }).then(() => {
             toggleInput(serieId);
             document.getElementById(`nome-serie-${serieId}`).textContent = nome;
         });
+
     }
 </script>
 @endsection
