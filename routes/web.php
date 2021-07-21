@@ -1,9 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EpisodiosController;
 use App\Http\Controllers\SeriesController;
 use App\Http\Controllers\TemporadasController;
-use App\Http\Controllers\EpisodiosController;
+use Illuminate\Support\Facades\Route;
+
 
 Route::get('/series', [SeriesController::class,'index'])->name('listar_series');
 Route::get('/series/create', [SeriesController::class,'create'])->name('form_criar_serie');
@@ -15,6 +16,9 @@ Route::get('/series/{serieId}/temporadas', [TemporadasController::class,'index']
 
 Route::get('/temporadas/{temporada}/episodios', [EpisodiosController::class,'index']);
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+
+Route::get('/dashboard', function () {
     return view('dashboard');
-})->name('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__.'/auth.php';
