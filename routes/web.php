@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::middleware(['auth'])->group(function (){
-    Route::get('/series', [SeriesController::class,'index'])->name('listar_series')->middleware('auth');
+    Route::get('/series', [SeriesController::class,'index'])->name('listar_series');
     Route::get('/series/create', [SeriesController::class,'create'])->name('form_criar_serie');
     Route::post('/series/create', [SeriesController::class,'store']);
     Route::delete('/series/remover/{id}', [SeriesController::class,'destroy']);
@@ -15,8 +15,10 @@ Route::middleware(['auth'])->group(function (){
 
     Route::get('/series/{serieId}/temporadas', [TemporadasController::class,'index']);
 
-    Route::get('/temporadas/{temporada}/episodios', [EpisodiosController::class,'index']);
+    Route::get('/series/{serie}/temporadas/{numero_temporada}/episodios', [EpisodiosController::class,'index']);
+    Route::get('/temporadas/{temporada}/episodios/assistir', [EpisodiosController::class,'assistir']);
 });
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -27,3 +29,5 @@ Route::get('/', function () {
 });
 
 require __DIR__.'/auth.php';
+
+

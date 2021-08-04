@@ -8,6 +8,9 @@ use App\Http\Requests\SeriesFormRequest;
 use App\Models\Serie;
 use App\Services\CriadorDeSerie;
 use App\Services\RemovedorDeSerie;
+use Barryvdh\Debugbar\Twig\Extension\Debug;
+use DebugBar\DataFormatter\DebugBarVarDumper;
+use DebugBar\DebugBar;
 use Illuminate\Http\Request;
 
 class SeriesController extends Controller
@@ -43,7 +46,7 @@ class SeriesController extends Controller
         return redirect()->route('listar_series');
     }
 
-    public function update(int $id, Request $request)
+    public function update(Request $request, int $id)
     {
         $newName = $request->nome;
         $serie = Serie::find($id);

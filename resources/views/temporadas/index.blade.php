@@ -9,12 +9,12 @@
     <ul class="list-group">
 
         @foreach ($temporadas as $temporada)
-            <li class="list-group-item d-flex justify-content-between align-items-center> Temporada {{ $temporada->numero }}" </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center> Temporada {{ $temporada->numero }}"</li>
             <a href= "temporadas/{{ $temporada->id }}/episodios">
                 Temporada {{ $temporada->numero }}
             </a>
             <span class="badge badge-dark">
-                0 / {{ $temporada->episodios->count() }}
+                {{ $temporada->getEpisodiosAssistidos()->count() }} / {{ $temporada->episodios->count()}}
             </span>
         @endforeach
     </ul>

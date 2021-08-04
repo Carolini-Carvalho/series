@@ -73,7 +73,7 @@ Séries
         formData.append('nome', nome);
         formData.append('_token', token);
 
-        const url = `/series/{id}/update`;
+        const url = '/series/'+serieId+'/update';
         console.log(url);
         fetch(url, {
             body: formData,
@@ -82,7 +82,6 @@ Séries
             toggleInput(serieId);
             document.getElementById(`nome-serie-${serieId}`).textContent = nome;
         });
-
     }
 </script>
 @endsection
